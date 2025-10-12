@@ -1,0 +1,75 @@
+
+# Write your MySQL query statement below
+
+/*
+SELECT 
+    MAX(salary) SecondHighestSalary
+FROM
+    Employee e
+WHERE 
+    salary < (
+    SELECT 
+        MAX(salary) MAX_SALARY_1
+    FROM 
+        Employee        
+);
+*/
+
+
+
+/*
+SELECT 
+    IFNULL(
+        (
+            SELECT 
+                DISTINCT 
+                    salary
+            FROM 
+                Employee
+            ORDER BY 
+                salary DESC
+            LIMIT 1 OFFSET 1
+        ),
+        NULL
+    ) AS SecondHighestSalary;
+*/
+
+
+
+
+/*
+with 
+    temp_sal as (
+        SELECT DISTINCT salary,DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+        FROM Employee
+    ),
+    second_sal as (
+        SELECT salary
+        FROM temp_sal
+        WHERE rnk=2
+    )
+SELECT 
+    CASE
+        WHEN (SELECT COUNT(*) FROM second_sal) = 0 
+            THEN NULL
+        ELSE 
+            (SELECT salary FROM second_sal)
+    END AS SecondHighestSalary
+;
+*/
+
+
+
+/*
+SELECT (
+  SELECT salary
+  FROM (
+    SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+    FROM Employee
+  ) x
+  WHERE rnk = 2
+  LIMIT 1
+) AS SecondHighestSalary;
+*/
+
+
