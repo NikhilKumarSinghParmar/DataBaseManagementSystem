@@ -1,0 +1,92 @@
+
+/*
+SELECT
+    salary,
+    CASE 
+        WHEN salary > 5000 THEN 'High'
+        WHEN salary > 2000 THEN 'Medium'
+        ELSE 'Low'
+    END AS SalaryLevel
+FROM Employee;
+*/
+
+
+/*
+SELECT
+    employeeName,
+    salary,
+    CASE 
+        WHEN salary > 10000 THEN 'Very High'
+        WHEN salary > 5000 THEN 
+            CASE 
+                WHEN department = 'Sales' THEN 'High-Sales'
+                ELSE 'High-Other'
+            END
+        WHEN salary > 2000 THEN 'Medium'
+        ELSE 'Low'
+    END AS SalaryCategory
+FROM Employee;
+*/
+
+
+
+/*
+SELECT *
+FROM Employee
+ORDER BY
+    CASE 
+        WHEN salary > 10000 THEN 1
+        WHEN salary > 5000 THEN 2
+        ELSE 3
+    END,
+    employeeName;  -- secondary sorting
+*/
+
+
+
+
+/*
+
+SELECT
+    department,
+    SUM(CASE WHEN salary > 5000 THEN 1 ELSE 0 END) AS HighSalaryCount,
+    SUM(CASE WHEN salary <= 5000 THEN 1 ELSE 0 END) AS LowSalaryCount
+FROM Employee
+GROUP BY department;
+*/
+
+
+
+
+
+/*
+SELECT *
+FROM Employee
+WHERE 
+    CASE 
+        WHEN department = 'Sales' THEN salary
+        ELSE 0
+    END > 4000;
+
+*/
+
+
+
+
+
+/*
+SELECT 
+    employeeName,
+    salary,
+    department,
+    CASE 
+        WHEN salary > 5000 AND department = 'HR' THEN 'High-HR'
+        WHEN salary > 5000 AND department = 'Sales' THEN 'High-Sales'
+        WHEN salary <= 5000 AND department = 'HR' THEN 'Low-HR'
+        ELSE 'Other'
+    END AS Category
+FROM Employee;
+
+*/
+
+
