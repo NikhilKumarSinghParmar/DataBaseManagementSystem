@@ -90,3 +90,32 @@ FROM Employee;
 */
 
 
+
+/*
+#used as switch statement
+SELECT
+    studentName,
+    grade,
+    CASE grade
+        WHEN 'A' THEN 'Excellent'
+        WHEN 'B' THEN 'Good'
+        WHEN 'C' THEN 'Average'
+        ELSE 'Needs Improvement'
+    END AS GradeDescription
+FROM Students;
+*/
+
+
+
+/*
+#use of case statement like switch in ORDER BY PART
+SELECT *
+FROM Employee
+ORDER BY 
+    CASE department
+        WHEN 'HR' THEN 1
+        WHEN 'Sales' THEN 2
+        WHEN 'IT' THEN 3
+        ELSE 4
+    END;
+*/
