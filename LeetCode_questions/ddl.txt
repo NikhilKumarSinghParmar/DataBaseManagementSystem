@@ -1,0 +1,99 @@
+
+-- ===== CREATE =====
+
+-- Create a database
+CREATE DATABASE school_db;
+
+-- Create a database if not exists (some SQL dialects)
+CREATE DATABASE IF NOT EXISTS school_db;
+
+-- Create table with primary key
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    birth_date DATE
+);
+
+-- Create table with multiple constraints
+CREATE TABLE employees (
+    emp_id INT,
+    emp_name VARCHAR(100) NOT NULL,
+    hire_date DATE DEFAULT CURRENT_DATE,
+    salary DECIMAL(10,2),
+    PRIMARY KEY (emp_id)
+);
+
+-- Create table with auto-increment / serial primary key
+CREATE TABLE orders (
+    order_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    order_date DATE
+);
+
+-- ===== ALTER =====
+
+-- Add a column
+ALTER TABLE students
+ADD email VARCHAR(255);
+
+-- Add multiple columns
+ALTER TABLE students
+ADD (phone VARCHAR(20), address VARCHAR(255));
+
+-- Modify column data type
+ALTER TABLE students
+ALTER COLUMN grade_level TYPE SMALLINT;
+
+-- Change column data type (alternative syntax)
+ALTER TABLE students
+MODIFY grade_level SMALLINT;
+
+-- Rename column
+ALTER TABLE students
+RENAME COLUMN name TO full_name;
+
+-- Drop a column
+ALTER TABLE students
+DROP COLUMN email;
+
+-- ===== DROP =====
+
+-- Drop a table
+DROP TABLE students;
+
+-- Drop table if exists
+DROP TABLE IF EXISTS students;
+
+-- Drop a database
+DROP DATABASE school_db;
+
+-- Drop database if exists
+DROP DATABASE IF EXISTS school_db;
+
+-- ===== TRUNCATE =====
+
+-- Truncate table to delete all rows
+TRUNCATE TABLE students;
+
+-- Truncate with restart identity (reset auto-increment counters)
+TRUNCATE TABLE students RESTART IDENTITY;
+
+-- Truncate cascade (remove dependent objects)
+TRUNCATE TABLE students CASCADE;
+
+-- ===== RENAME =====
+
+-- Rename table
+ALTER TABLE students
+RENAME TO learners;
+
+-- Rename column
+ALTER TABLE students
+RENAME COLUMN name TO full_name;
+
+-- ===== COMMENT =====
+
+-- Comment on table
+COMMENT ON TABLE students IS 'Stores student data';
+
+-- Comment on column
+COMMENT ON COLUMN students.name IS 'Full name of the student';
