@@ -1,0 +1,41 @@
+/*
+SELECT e.name AS Employee
+FROM Employee AS e
+INNER JOIN Employee AS m
+ON e.managerid = m.Id 
+WHERE e.salary >= m.salary;
+
+*/
+
+
+/*
+SELECT e.name AS Employee
+FROM Employee AS e
+LEFT JOIN Employee AS m
+ON e.managerid = m.Id 
+WHERE e.salary >= m.salary;
+*/
+
+/*
+SELECT e.name AS Employee
+FROM Employee AS e
+RIGHT JOIN Employee AS m
+ON e.managerid = m.Id 
+WHERE e.salary >= m.salary;
+*/
+
+/*
+SELECT e.name AS Employee
+FROM Employee AS e
+CROSS JOIN Employee AS m
+ON e.managerid = m.Id 
+WHERE e.salary >= m.salary;
+*/
+
+
+
+SELECT e.name AS Employee
+FROM Employee AS e
+JOIN Employee AS m
+ON e.managerid = m.Id 
+WHERE e.salary >= m.salary;
